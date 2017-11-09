@@ -1,0 +1,8 @@
+# list files only, sorted
+find /tmp -maxdepth 1 -type f  -printf "%f\n" | sort
+
+# md5sum without the trailing garbage
+md5sum dht.pl  | awk '{print $1}'
+
+# file mtime
+stat -c %Y dht.pl

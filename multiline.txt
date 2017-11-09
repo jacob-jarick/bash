@@ -1,0 +1,22 @@
+
+
+# list files in dir + mtime TSV
+DIR=/home/jjarick
+for fn in `find $DIR -maxdepth 1 -type f  -printf "%f\n"  | sort`; do
+	MTIME=`stat -c %Y "$DIR/$fn"`
+	echo -n $fn
+	echo -en ' \t '
+	echo $MTIME
+done
+
+# md5sum list of files
+DIR=/etc
+files=( "passwd" "usb_modeswitch.conf" "yum.conf" )
+for fn in "${files[@]}" ; do
+	fpath="$DIR/$fn"
+	HASH=`md5sum $fpath | awk '{print $1}'`
+	echo -n $fn
+	echo -en ' \t '
+	echo $HASH
+done
+
