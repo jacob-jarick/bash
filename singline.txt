@@ -6,3 +6,6 @@ md5sum dht.pl  | awk '{print $1}'
 
 # file mtime
 stat -c %Y dht.pl
+
+# expand dir glob
+find /home/cu*/npp -maxdepth 1 -type d  | sort
