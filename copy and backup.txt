@@ -1,0 +1,18 @@
+# remote -> local, can be sped up using diff ciphers
+ssh mem@10.1.1.10 'tar cf - /mnt/super ' | tar xvf - -C /mnt/super
+
+# local (works well with fussy ntfs systems
+find . -depth -mount -print | cpio -p -d -m -u -v /mnt/sdb1
+
+
+# disk image to gz
+
+
+# note pv is only used for progress display, change 500G to disk size
+
+dd if=/dev/sda conv=sync,noerror bs=64K | pv -s 500G  | gzip -c  > /mnt/guest/backup/wd-m2-ssd.img
+
+# disk image using partclone.dd
+
+partclone.dd -O /mnt/guest/backup/wd-m2-ssd.img -s /dev/sda -I
+
