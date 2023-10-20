@@ -5,8 +5,8 @@ set -e
 rows=$(tput lines)
 cols=$(tput cols)
 max_chars=$((rows * cols))
-change_colour_interval=$((max_chars * 7))
-cls=0
+change_colour_interval=$((max_chars * 5))
+blank=0
 
 clear
 
@@ -45,7 +45,8 @@ change_colour()
 # display colours in use
 
 echo -e "\n\e[0mColours in use: \n"
-for ((i = 0; i < colour_count; i++)); do
+for ((i = 0; i < colour_count; i++))
+do
   color="${text_colours[i]}"
   echo -e "${color}${i}"
 done
@@ -75,7 +76,8 @@ done
 change_colour
 
 # main loop
-while true; do
+while true
+do
   random_c=$((RANDOM % change_colour_interval))
   random_x=$((RANDOM % cols))
   random_y=$((RANDOM % rows))
@@ -87,7 +89,7 @@ while true; do
 
   tput cup $random_y $random_x
 
-  if [ $cls = 1 ]
+  if [ $blank = 1 ]
   then
     echo -ne "\e[30m.${random_colour}"
   else
@@ -100,7 +102,7 @@ while true; do
     fi
   fi
 
-  if [ $cls = 1 ]
+  if [ $blank = 1 ]
   then
     r=$(( RANDOM % 2 ));
   else
@@ -109,11 +111,11 @@ while true; do
 
   if [ $r = 1 ]
   then
-    if [ $cls = 1 ]
+    if [ $blank = 1 ]
     then
-      cls=0
+      blank=0
     else
-      cls=1
+      blank=1
     fi
   fi
 done
