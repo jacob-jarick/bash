@@ -50,7 +50,7 @@ while true; do
         then
           r=$(( RANDOM % 2 ));
         else
-          r=$(( RANDOM % 30 ));
+          r=$(( RANDOM % 25 ));
         fi
 
         if [ $r = 1 ]
