@@ -8,6 +8,9 @@ max_chars=$((rows * cols))
 change_colour_interval=$((max_chars * 5))
 cls=0
 
+clear
+
+echo -ne "\e[0m"
 echo "rows: $rows, cols: $cols, max_chars: $max_chars";
 
 text_colours=(
@@ -39,8 +42,19 @@ change_colour()
   echo -ne "${random_colour}"
 }
 
+# display colours in use
+
+echo -e "\n\e[0mColours in use: \n"
+for ((i = 0; i < colour_count; i++)); do
+  color="${text_colours[i]}"
+  echo -e "${color}${i}"
+done
+sleep 3
+
+# set initial colour
 change_colour
 
+# populate screen
 for ((i = 0; i <= max_chars; i++))
 do
   random_x=$((RANDOM % cols))
@@ -57,8 +71,10 @@ do
   fi
 done
 
-echo -e "\e[0m"
+# set first colour for main loop
+change_colour
 
+# main loop
 while true; do
   random_c=$((RANDOM % change_colour_interval))
   random_x=$((RANDOM % cols))
