@@ -5,7 +5,7 @@ set -e
 rows=$(tput lines)
 cols=$(tput cols)
 max_chars=$((rows * cols))
-change_colour_interval=$((max_chars * 5))
+change_colour_interval=$((max_chars * 7))
 cls=0
 
 clear
@@ -104,7 +104,7 @@ while true; do
   then
     r=$(( RANDOM % 2 ));
   else
-    r=$(( RANDOM % 30 ));
+    r=$(( RANDOM % 25 ));
   fi
 
   if [ $r = 1 ]
