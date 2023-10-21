@@ -7,24 +7,6 @@ cols=$(tput cols)
 max_chars=$((rows * cols))
 blank=0
 
-echo -e "\e[32m"
-
-for ((i = 0; i <= max_chars; i++))
-do
-  random_x=$((RANDOM % cols))
-  random_y=$((RANDOM % rows))
-
-  tput cup $random_y $random_x
-
-  r=$(( RANDOM % 2 ));
-  if [ $r = 1 ]
-  then
-    echo -n "\\"
-  else
-    echo -n "/"
-  fi
-done
-
 echo -e "\e[0m"
 
 while true
